@@ -19,7 +19,7 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class QuizUI extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Screen Definition
