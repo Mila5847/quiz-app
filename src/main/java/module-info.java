@@ -4,6 +4,6 @@ module com.example.gamequiz {
 
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.example.gamequiz to javafx.fxml;
-    exports com.example.gamequiz;
+    opens com.example.quizapp to javafx.fxml;
+    exports com.example.quizapp;
 }
