@@ -1,0 +1,30 @@
+If class A inherits from class B, class A is the;superclass;subclass;secondClass;smallerClass;subclass
+This key word is used in an aggregation relationship;extends;implements;derives;no key word;no key word
+Abstract methods must be;overloaded;ignored;overridden;deleted;overridden
+Those exceptions should be handled;checked exceptions;unchecked exceptions;all exceptions;exceptions from the Error class;checked exceptions
+This statement is used to manually throw an exception;throw;throws;thrown;threw;throw
+The catch blocks should catch exceptions in order from;general to specific;specific to general;order doesn't matter;more complex to less complex;specific to general
+Which is not part of a method's signature;the method's name;the number and order of parameters;the parameters' type;the return type of the method;the return type of the method
+The stack is based on this rule;FIFO;LIFO;MIFO;MILO;LIFO
+Use this method to get an element at a specific position in an ArrayList;get(index);at(index);on(index);set(index);get(index)
+This type of List automatically expands or shrinks its size;LinkedList;ArrayList;none of the enumerated;Stack;ArrayList
+The process of converting an object to a series of bytes is called;Deserialization;Byte-ing;Casting;Serialization;Serialization
+An abstract class cannot be;inherited by other classes;instantiated;created in Java;inherited and instantiated;instantiated
+When implementing multiple interfaces, we use this to separate them;semi-colon;colon;dash;dot;colon
+A recursive function;calls itself;deletes itself;creates other functions;all of the enumerated;calls itself
+Animal animal = new Dog() is an example of;an interface;an abstract method;polymorphism;aggregation;polymorphism
+The superclass constructor always executes;after the subclass constructor;before the subclass constructor;when there is an error;when there is more than one subclass;before the subclass constructor
+Aggregation is this kind of relationship;is-a;both is-a and has-a;none of the enumerated;has-a;has-a
+To retrieve the error message from an exception use the method;getErrorMessage;getExceptionMessage;getMessage;errorRetrieve;getMessage
+The internal list of all the methods that are currently executing is called;call stack;stack list;call list;executed list;call stack
+To call the superclass constructor we use this key word;construct;this;super;base;super
+This is the superclass of all classes in Java;Java class;Object class;Throwable class;there is none;Object class
+This type of list uses nodes and references;Array;Dynamic array;LinkedList;ArrayList;LinkedList
+An interface;specifies the behavior for a class;cannot be instantiated;uses the key word "interface";all of the enumerated;all of the enumerated
+The lambda operator is;:;->;-;=;->
+To determine if two String objects contain the same string use;the = operator;the equals method;the equal method;the == operator;the equals method
+Use this to prevent security holes when having aggregated classes;perform deep copies;returning copies of objects;all of the enumerated;none of the enumerated;all of the enumerated
+The "this" key word;refers to the next method in the code;refers to the variable itself;refers to the constructor;refers to the parent class;refers to the variable itself
+A static member can refer to;nonstatic members;static members only;nonstatic and static members;none fo the enumerated;static members only
+If int[] values = {1,2,3,4,5}, values[3] is;2;3;4;not accessible;4
+To get the length of a String, we use;length();length;size();amount();length()

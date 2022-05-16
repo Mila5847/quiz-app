@@ -9,14 +9,19 @@ import java.util.ArrayList;
 public class MultipleChoiceQuestion extends Question{
     // Attributes of a multiple choice question
     private ArrayList<String> possibleAnswers = new ArrayList<String>();
-    private String selectedAnswer;
+    private String selectedAnswer = "";
 
     // Constructors of a multiple choice question
     public MultipleChoiceQuestion(){}
 
-    public MultipleChoiceQuestion(ArrayList<String> possibleAnswers, String selectedAnswer){
+    public MultipleChoiceQuestion(ArrayList<String> possibleAnswers){
         this.possibleAnswers = possibleAnswers;
-        this.selectedAnswer = selectedAnswer;
+    }
+
+    public MultipleChoiceQuestion(String question, ArrayList<String> possibleAnswers, String correctAnswer){
+        super(question,correctAnswer);
+        this.possibleAnswers = possibleAnswers;
+        this.selectedAnswer = "";
     }
 
     // Getters

@@ -16,6 +16,10 @@ import java.io.IOException;
 public class QuizUI extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        RandomQuiz randomQuiz = new RandomQuiz();
+        randomQuiz.initialize();
+        randomQuiz.shuffle();
+
         // Screen Definition
         HBox entireScreen = new HBox();
         entireScreen.setStyle("-fx-background-color: #4F96A1");

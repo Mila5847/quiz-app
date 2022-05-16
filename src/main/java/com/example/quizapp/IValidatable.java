@@ -7,5 +7,5 @@ package com.example.quizapp;
 public interface IValidatable {
 
     // Method that checks if the user's answer is correct or not.
-    public boolean isCorrectAnswer();
+    boolean isCorrectAnswer();
 }

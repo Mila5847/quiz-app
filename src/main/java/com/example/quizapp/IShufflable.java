@@ -5,5 +5,5 @@ package com.example.quizapp;
 // The positions of the random questions in the ArrayList will be changed.
 
 public interface IShufflable {
-    public void shuffle();
+    void shuffle();
 }

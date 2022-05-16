@@ -1,5 +1,6 @@
 package com.example.quizapp;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 // This class is the basic class of a Quiz. A quiz is made of questions.
@@ -25,7 +26,7 @@ public class Quiz implements IQuizable{
     }
 
     @Override
-    public void initialize() {
+    public void initialize() throws FileNotFoundException {
 
     }
 
