@@ -10,22 +10,22 @@ import java.util.Scanner;
 
 public class RandomQuiz extends Quiz implements IShufflable{
     // Attributes of a random quiz
-    private ArrayList<Question> randomQuestions = new ArrayList<Question>();
+    private ArrayList<MultipleChoiceQuestion> randomQuestions = new ArrayList<MultipleChoiceQuestion>();
 
     // Constructors of random quiz
     public RandomQuiz(){}
 
-    public RandomQuiz(ArrayList<Question> randomQuestions){
+    public RandomQuiz(ArrayList<MultipleChoiceQuestion> randomQuestions){
         this.randomQuestions = randomQuestions;
     }
 
     // Getters
-    public ArrayList<Question> getRandomQuestions(){
+    public ArrayList<MultipleChoiceQuestion> getRandomQuestions(){
         return this.randomQuestions;
     }
 
     // Setters
-    public void setRandomQuestions(ArrayList<Question> randomQuestions){
+    public void setRandomQuestions(ArrayList<MultipleChoiceQuestion> randomQuestions){
         this.randomQuestions = randomQuestions;
     }
 
@@ -36,13 +36,6 @@ public class RandomQuiz extends Quiz implements IShufflable{
 
     @Override
     public void initialize() throws FileNotFoundException {
-        // Read from file
-        // Extract each line into a variable
-        // Split
-        // Create new MultipleChoiceQuestion
-        // Set properties from multiple choice questions from
-        // RandomQuestion.add(new Multiple(.................))
-
         File fileWithQuestions = new File("randomQuestions.txt");
         Scanner scanner = new Scanner(fileWithQuestions);
 
@@ -59,6 +52,18 @@ public class RandomQuiz extends Quiz implements IShufflable{
             multipleChoiceQuestion.setAnswer(questionComposition[5]);
             randomQuestions.add(multipleChoiceQuestion);
         }
+        scanner.close();
     }
 
+    @Override
+    public void submit() {
+        if(randomQuestions.get(0).isCorrectAnswer()){
+            System.out.println("1 point");
+        }
+    }
+
+    @Override
+    public void summaryDisplay() {
+
+    }
 }

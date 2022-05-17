@@ -48,6 +48,6 @@ public class MultipleChoiceQuestion extends Question{
 
     @Override
     public boolean isCorrectAnswer() {
-        return false;
+        return this.selectedAnswer.equals(this.getAnswer());
     }
 }
