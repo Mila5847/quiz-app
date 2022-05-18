@@ -1,16 +1,18 @@
 package com.example.quizapp;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 import java.util.Scanner;
 
 public class RandomQuiz extends Quiz implements IShufflable{
     // Attributes of a random quiz
     private ArrayList<MultipleChoiceQuestion> randomQuestions = new ArrayList<MultipleChoiceQuestion>();
+    int countCorrectAnswers = 0;
+    String correctedQuestions = "";
+    String completeQuizMessage = "";
+    String score = "Score: /3";
 
     // Constructors of random quiz
     public RandomQuiz(){}
@@ -53,17 +55,51 @@ public class RandomQuiz extends Quiz implements IShufflable{
             randomQuestions.add(multipleChoiceQuestion);
         }
         scanner.close();
+        countCorrectAnswers = 0;
+        correctedQuestions = "";
+        completeQuizMessage = "";
+        score = "Score: /3";
     }
 
     @Override
     public void submit() {
-        if(randomQuestions.get(0).isCorrectAnswer()){
-            System.out.println("1 point");
+        if(randomQuestions.get(0).getSelectedAnswer().equals("") && randomQuestions.get(1).getSelectedAnswer().equals("") && randomQuestions.get(2).getSelectedAnswer().equals("")){
+            return;
+        }
+        for(int i = 0; i < 3; i++){
+            if(randomQuestions.get(i).isCorrectAnswer()){
+                countCorrectAnswers += 1;
+                correctedQuestions += "Question " + (i + 1) + ": " + randomQuestions.get(i).getQuestion() + ": Correct\n";
+            }
+            else{
+                correctedQuestions += "Question " + (i + 1) + ": " + randomQuestions.get(i).getQuestion() + ": Incorrect\n" +
+                        "Correct answer: " + randomQuestions.get(i).getAnswer() + "\n";
+                return;
+            }
+            score = "Score " + countCorrectAnswers + " /3";
         }
     }
 
     @Override
-    public void summaryDisplay() {
+    public String summaryDisplay() {
+        // Source of jokes: https://www.hongkiat.com/blog/programming-jokes/.
+        if(countCorrectAnswers < 2){
+            completeQuizMessage = "The problem is not the quiz. The problem is you. \n" +
+                    "How to tell apart \"hardware\" from \"software\"? \n" +
+                    "Hardware is the part of the computer that you can kick \n" +
+                    "Now that you have figured that out...try the quiz again :).";
+        }
+        else if(countCorrectAnswers == 3){
+            completeQuizMessage = "You are too good for this quiz. \n" +
+                    "Here is a joke for you: Why did the programmer quit his job? \n" +
+                    "Because he didn't get arrays (a raise).";
+        }
+        else{
+            completeQuizMessage = "Not bad, not bad. \n" +
+                    "Here is a joke for you: What do computers and air conditioners have in common? \n" +
+                    "They both become useless when you open windows";
+        }
 
+        return score + "\n" + completeQuizMessage + "\n" + correctedQuestions;
     }
 }

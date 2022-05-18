@@ -8,5 +8,5 @@ import java.io.FileNotFoundException;
 public interface IQuizable {
     void initialize() throws FileNotFoundException;
     void submit();
-    void summaryDisplay();
+    String summaryDisplay();
 }

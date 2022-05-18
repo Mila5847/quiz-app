@@ -53,7 +53,7 @@ public class Quiz implements IQuizable{
     }
 
     @Override
-    public void summaryDisplay() {
-
+    public String summaryDisplay() {
+        return null;
     }
 }

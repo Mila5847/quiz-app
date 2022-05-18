@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class QuizUI extends Application {
 
     public String instructions = "1. Start a new quiz with the \"New Quiz\" button. \n2. Select a question.\n3. Select an answer.\n4. Submit quiz";
+    public int currentQuestionNumber = 0;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -61,33 +62,24 @@ public class QuizUI extends Application {
         answer1Button.setPrefHeight(80);
         answer1Button.setPrefWidth(250);
         answer1Button.getStyleClass().addAll("btn", "btn-warning");
-        answer1Button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                randomQuiz.getRandomQuestions().get(0).setSelectedAnswer(answer1Button.getText());
-            }
+        answer1Button.setOnAction(actionEvent -> {
+           setAnswerButtonEventHandler(randomQuiz, answer1Button, currentQuestionNumber);
         });
 
         Button answer2Button = new Button("Answer 2");
         answer2Button.setPrefHeight(80);
         answer2Button.setPrefWidth(250);
         answer2Button.getStyleClass().addAll("btn", "btn-warning");
-        answer2Button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                randomQuiz.getRandomQuestions().get(0).setSelectedAnswer(answer2Button.getText());
-            }
+        answer2Button.setOnAction(actionEvent -> {
+            setAnswerButtonEventHandler(randomQuiz, answer2Button, currentQuestionNumber);
         });
 
         Button answer3Button = new Button("Answer 3");
         answer3Button.setPrefHeight(80);
         answer3Button.setPrefWidth(250);
         answer3Button.getStyleClass().addAll("btn", "btn-warning");
-        answer3Button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                randomQuiz.getRandomQuestions().get(0).setSelectedAnswer(answer3Button.getText());
-            }
+        answer3Button.setOnAction(actionEvent -> {
+            setAnswerButtonEventHandler(randomQuiz, answer3Button, currentQuestionNumber);
         });
 
         Button answer4Button = new Button("Answer 4");
@@ -156,13 +148,13 @@ public class QuizUI extends Application {
         newQuizButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                questionDisplay.setText(instructions);
                 try {
                     randomQuiz.initialize();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
                 randomQuiz.shuffle();
+                questionDisplay.setText(instructions);
             }
         });
 
@@ -177,16 +169,18 @@ public class QuizUI extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 randomQuiz.submit();
-                randomQuiz.summaryDisplay();
+                String summaryDisplay = randomQuiz.summaryDisplay();
 
                 Popup popup = new Popup();
-                popup.setWidth(1000);
-                popup.setHeight(600);
+                popup.setWidth(2000);
+                popup.setHeight(800);
 
-                Label label = new Label("Performance Summary");
+                Label label = new Label("Performance Display \n" + summaryDisplay);
+                label.getStyleClass().add("lbl");
+                label.setStyle("-fx-text-fill: white; -fx-font: 16 arial");
 
                 HBox hBox = new HBox();
-                hBox.setPrefWidth(550);
+                hBox.setPrefWidth(900);
                 hBox.setPrefHeight(350);
                 hBox.setAlignment(Pos.CENTER);
                 hBox.setStyle("-fx-background-color: linear-gradient(#2366e0 10%, #23e0b8 60%, #2366e0 90%);");
@@ -202,8 +196,8 @@ public class QuizUI extends Application {
                     }
                 });
                 hBox.setSpacing(40);
-                hBox.getChildren().addAll(label, returnButton);
-                popup.getContent().add(hBox);
+                hBox.getChildren().add(label);
+                popup.getContent().addAll(hBox, returnButton);
                 popup.show(stage);
             }
         });
@@ -237,10 +231,11 @@ public class QuizUI extends Application {
         answer2Button.setText(randomQuiz.getRandomQuestions().get(questionNumber).getPossibleAnswers().get(1));
         answer3Button.setText(randomQuiz.getRandomQuestions().get(questionNumber).getPossibleAnswers().get(2));
         answer4Button.setText(randomQuiz.getRandomQuestions().get(questionNumber).getPossibleAnswers().get(3));
+        this.currentQuestionNumber = questionNumber;
     }
 
-    private void setAnswerButtonEventHandler(){
-
+    private void setAnswerButtonEventHandler(RandomQuiz randomQuiz, Button answerButton, int currentQuestionNumber){
+        randomQuiz.getRandomQuestions().get(currentQuestionNumber).setSelectedAnswer(answerButton.getText());
     }
 
     public static void main(String[] args) {

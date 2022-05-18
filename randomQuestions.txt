@@ -10,7 +10,7 @@ Use this method to get an element at a specific position in an ArrayList;get(ind
 This type of List automatically expands or shrinks its size;LinkedList;ArrayList;none of the enumerated;Stack;ArrayList
 The process of converting an object to a series of bytes is called;Deserialization;Byte-ing;Casting;Serialization;Serialization
 An abstract class cannot be;inherited by other classes;instantiated;created in Java;inherited and instantiated;instantiated
-When implementing multiple interfaces, we use this to separate them;semi-colon;colon;dash;dot;colon
+When implementing multiple interfaces, we use this to separate them with;semi-colon;colon;dash;dot;colon
 A recursive function;calls itself;deletes itself;creates other functions;all of the enumerated;calls itself
 Animal animal = new Dog() is an example of;an interface;an abstract method;polymorphism;aggregation;polymorphism
 The superclass constructor always executes;after the subclass constructor;before the subclass constructor;when there is an error;when there is more than one subclass;before the subclass constructor
