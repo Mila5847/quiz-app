@@ -69,15 +69,14 @@ public class RandomQuiz extends Quiz implements IShufflable{
         for(int i = 0; i < 3; i++){
             if(randomQuestions.get(i).isCorrectAnswer()){
                 countCorrectAnswers += 1;
-                correctedQuestions += "Question " + (i + 1) + ": " + randomQuestions.get(i).getQuestion() + ": Correct\n";
+                correctedQuestions += "Question " + (i + 1) + "-" + randomQuestions.get(i).getQuestion() + ": \"" + randomQuestions.get(i).getSelectedAnswer() + "\". Correct\n";
             }
             else{
-                correctedQuestions += "Question " + (i + 1) + ": " + randomQuestions.get(i).getQuestion() + ": Incorrect\n" +
+                correctedQuestions += "Question " + (i + 1) + "-" + randomQuestions.get(i).getQuestion() + ": \"" + randomQuestions.get(i).getSelectedAnswer() + "\". Incorrect\n" +
                         "Correct answer: " + randomQuestions.get(i).getAnswer() + "\n";
-                return;
             }
-            score = "Score " + countCorrectAnswers + " /3";
         }
+        score = "Score " + countCorrectAnswers + " /3";
     }
 
     @Override
@@ -100,6 +99,6 @@ public class RandomQuiz extends Quiz implements IShufflable{
                     "They both become useless when you open windows";
         }
 
-        return score + "\n" + completeQuizMessage + "\n" + correctedQuestions;
+        return score + "\n" + "\n" + correctedQuestions + completeQuizMessage ;
     }
 }

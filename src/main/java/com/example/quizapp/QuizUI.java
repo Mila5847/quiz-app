@@ -172,32 +172,38 @@ public class QuizUI extends Application {
                 String summaryDisplay = randomQuiz.summaryDisplay();
 
                 Popup popup = new Popup();
-                popup.setWidth(2000);
+                popup.setWidth(1800);
                 popup.setHeight(800);
 
                 Label label = new Label("Performance Display \n" + summaryDisplay);
                 label.getStyleClass().add("lbl");
-                label.setStyle("-fx-text-fill: white; -fx-font: 16 arial");
+                label.setStyle("-fx-text-fill: black; -fx-font: 16 arial");
 
-                HBox hBox = new HBox();
-                hBox.setPrefWidth(900);
-                hBox.setPrefHeight(350);
-                hBox.setAlignment(Pos.CENTER);
-                hBox.setStyle("-fx-background-color: linear-gradient(#2366e0 10%, #23e0b8 60%, #2366e0 90%);");
+                HBox hBoxSummaryText = new HBox();
+                hBoxSummaryText.setPrefWidth(870);
+                hBoxSummaryText.setPrefHeight(520);
+                hBoxSummaryText.setAlignment(Pos.CENTER);
+                hBoxSummaryText.setStyle("-fx-background-color: linear-gradient(#4F96A1 10%, #D9FFE0 60%, #e68327 90%);");
 
                 Button returnButton = new Button("Return to game");
                 returnButton.setPrefHeight(50);
                 returnButton.setPrefWidth(150);
-                returnButton.getStyleClass().addAll("btn", "btn-warning");
+                returnButton.getStyleClass().addAll("btn");
+                returnButton.setStyle("-fx-background-color: #4F96A1; -fx-text-fill: white");
                 returnButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         popup.hide();
                     }
                 });
-                hBox.setSpacing(40);
-                hBox.getChildren().add(label);
-                popup.getContent().addAll(hBox, returnButton);
+
+                VBox questionAndReturnButtonBox = new VBox();
+                questionAndReturnButtonBox.setAlignment(Pos.CENTER);
+                questionAndReturnButtonBox.setSpacing(20);
+                questionAndReturnButtonBox.getChildren().addAll(label, returnButton);
+                VBox.setMargin(label, new Insets(15, 0, 0, 15));
+                hBoxSummaryText.getChildren().add(questionAndReturnButtonBox);
+                popup.getContent().addAll(hBoxSummaryText);
                 popup.show(stage);
             }
         });
