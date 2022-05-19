@@ -5,7 +5,7 @@ package com.example.quizapp;
 
 import java.io.FileNotFoundException;
 
-public interface IQuizable {
+public interface IQuizzable {
     void initialize() throws FileNotFoundException;
     void submit();
     String summaryDisplay();

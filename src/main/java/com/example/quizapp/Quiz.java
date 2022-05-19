@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 // This class is the basic class of a Quiz. A quiz is made of questions.
-public class Quiz implements IQuizable{
+public class Quiz implements IQuizzable{
     // Attributes of a Quiz
     private ArrayList<Question> questions = new ArrayList<Question>();
 
@@ -49,11 +49,12 @@ public class Quiz implements IQuizable{
 
     @Override
     public void submit() {
-
+        // TODO throw notImplemented exception
     }
 
     @Override
     public String summaryDisplay() {
         return null;
+        // TODO throw notImplemented exception
     }
 }

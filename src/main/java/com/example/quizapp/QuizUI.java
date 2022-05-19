@@ -86,11 +86,8 @@ public class QuizUI extends Application {
         answer4Button.setPrefHeight(80);
         answer4Button.setPrefWidth(250);
         answer4Button.getStyleClass().addAll("btn", "btn-warning");
-        answer4Button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                randomQuiz.getRandomQuestions().get(0).setSelectedAnswer(answer4Button.getText());
-            }
+        answer4Button.setOnAction(actionEvent -> {
+            setAnswerButtonEventHandler(randomQuiz, answer4Button, currentQuestionNumber);
         });
 
 
@@ -194,6 +191,10 @@ public class QuizUI extends Application {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         popup.hide();
+                        randomQuiz.countCorrectAnswers = 0;
+                        randomQuiz.correctedQuestions = "";
+                        randomQuiz.completeQuizMessage = "";
+                        randomQuiz.score = "Score: /3";
                     }
                 });
 

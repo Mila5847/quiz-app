@@ -38,6 +38,8 @@ public class RandomQuiz extends Quiz implements IShufflable{
 
     @Override
     public void initialize() throws FileNotFoundException {
+        randomQuestions.clear();
+
         File fileWithQuestions = new File("randomQuestions.txt");
         Scanner scanner = new Scanner(fileWithQuestions);
 
@@ -54,6 +56,7 @@ public class RandomQuiz extends Quiz implements IShufflable{
             multipleChoiceQuestion.setAnswer(questionComposition[5]);
             randomQuestions.add(multipleChoiceQuestion);
         }
+        // Finally
         scanner.close();
         countCorrectAnswers = 0;
         correctedQuestions = "";
@@ -99,6 +102,6 @@ public class RandomQuiz extends Quiz implements IShufflable{
                     "They both become useless when you open windows";
         }
 
-        return score + "\n" + "\n" + correctedQuestions + completeQuizMessage ;
+        return score + "\n" + "\n" + correctedQuestions + "\n" + completeQuizMessage ;
     }
 }

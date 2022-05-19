@@ -24,7 +24,7 @@ An interface;specifies behavior of a class;cannot be instantiated;uses the key w
 The lambda operator is;:;->;-;=;->
 To determine if two String objects contain the same string use;the = operator;the equals method;the equal method;the == operator;the equals method
 Use this to prevent security holes when having aggregated classes;perform deep copies;returning copies of objects;all of the enumerated;none of the enumerated;all of the enumerated
-The "this" key word;refers to the next method in the code;refers to the variable itself;refers to the constructor;refers to the parent class;refers to the variable itself
+The "this" key word;refers to the subclass;refers to the variable itself;refers to the constructor;refers to the parent class;refers to the variable itself
 A static member can refer to;nonstatic members;static members only;nonstatic/static members;none of the enumerated;static members only
 If int[] values = {1,2,3,4,5}, values[3] is;2;3;4;not accessible;4
 To get the length of a String, we use;length();length;size();amount();length()
