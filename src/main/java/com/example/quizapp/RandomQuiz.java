@@ -17,10 +17,6 @@ public class RandomQuiz extends Quiz implements IShufflable{
     // Constructors of random quiz
     public RandomQuiz(){}
 
-    public RandomQuiz(ArrayList<MultipleChoiceQuestion> randomQuestions){
-        this.randomQuestions = randomQuestions;
-    }
-
     // Getters
     public ArrayList<MultipleChoiceQuestion> getRandomQuestions(){
         return this.randomQuestions;
@@ -29,11 +25,6 @@ public class RandomQuiz extends Quiz implements IShufflable{
     // Setters
     public void setRandomQuestions(ArrayList<MultipleChoiceQuestion> randomQuestions){
         this.randomQuestions = randomQuestions;
-    }
-
-    @Override
-    public void shuffle() {
-        Collections.shuffle(randomQuestions);
     }
 
     @Override
@@ -62,6 +53,11 @@ public class RandomQuiz extends Quiz implements IShufflable{
         correctedQuestions = "";
         completeQuizMessage = "";
         score = "Score: /3";
+    }
+
+    @Override
+    public void shuffle() {
+        Collections.shuffle(randomQuestions);
     }
 
     @Override

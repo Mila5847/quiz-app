@@ -8,53 +8,30 @@ import java.util.Scanner;
 // This class is the basic class of a Quiz. A quiz is made of questions.
 public class Quiz implements IQuizzable{
     // Attributes of a Quiz
-    private ArrayList<Question> questions = new ArrayList<Question>();
-
-    // Constructors of a Quiz
-    public Quiz(){}
-
-    public Quiz(ArrayList<Question> questions){
-        this.questions = questions;
-    }
+    private ArrayList<MultipleChoiceQuestion> questions = new ArrayList<MultipleChoiceQuestion>();
 
     // Getters
-    public ArrayList<Question> getQuestions(){
+    public ArrayList<MultipleChoiceQuestion> getQuestions(){
         return this.questions;
     }
 
     // Setters
-    public void setQuestions(ArrayList<Question> questions){
+    public void setQuestions(ArrayList<MultipleChoiceQuestion> questions){
         this.questions = questions;
     }
 
     @Override
     public void initialize() throws FileNotFoundException {
-        File fileWithQuestions = new File("randomQuestions.txt");
-        Scanner scanner = new Scanner(fileWithQuestions);
-
-        while(scanner.hasNextLine()) {
-            String question = scanner.nextLine();
-            String[] questionComposition = question.split(";");
-            MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
-            multipleChoiceQuestion.setQuestion(questionComposition[0]);
-            ArrayList<String> possibleAnswers = new ArrayList<String>();
-            for (int i = 1; i < 5; i++) {
-                possibleAnswers.add(questionComposition[i]);
-            }
-            multipleChoiceQuestion.setPossibleAnswers(possibleAnswers);
-            multipleChoiceQuestion.setAnswer(questionComposition[5]);
-            questions.add(multipleChoiceQuestion);
-        }
+        throw new UnsupportedOperationException("The method is not implemented.");
     }
 
     @Override
     public void submit() {
-        // TODO throw notImplemented exception
+        throw new UnsupportedOperationException("The method is not implemented.");
     }
 
     @Override
     public String summaryDisplay() {
-        return null;
-        // TODO throw notImplemented exception
+        throw new UnsupportedOperationException("The method is not implemented.");
     }
 }

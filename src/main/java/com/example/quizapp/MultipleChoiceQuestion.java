@@ -33,10 +33,6 @@ public class MultipleChoiceQuestion extends Question{
         return this.selectedAnswer;
     }
 
-    public String getSelectedAnswerAtIndex(int position){
-        return this.possibleAnswers.get(position);
-    }
-
     // Setters
     public void setPossibleAnswers(ArrayList<String> possibleAnswers){
         this.possibleAnswers = possibleAnswers;

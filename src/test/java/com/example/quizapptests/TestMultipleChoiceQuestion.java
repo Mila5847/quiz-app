@@ -7,71 +7,164 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestMultipleChoiceQuestion {
+
+    @Test
+    void WhenSettingQuestionProperty_QuestionIsSetProperly(){
+        // Given
+        String question = "Question1";
+        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
+
+        // When
+        multipleChoiceQuestion.setQuestion(question);
+
+        // Then
+        assertEquals(question, multipleChoiceQuestion.getQuestion());
+    }
+
+    @Test
+    void WhenSettingAnswerProperty_AnswerIsSetProperly(){
+        // Given
+        String answer = "answer1";
+        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
+
+        // When
+        multipleChoiceQuestion.setAnswer(answer);
+
+        // Then
+        assertEquals(answer, multipleChoiceQuestion.getAnswer());
+    }
+
     @Test
     void WhenUsingEmptyConstructor_PossibleAnswersAndSelectedAnswer_HaveDefaultValues(){
+        // Given
         ArrayList<String> possibleAnswers = new ArrayList<String>();
         String selectedAnswer = "";
 
+        // When
         MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
-        assertTrue(possibleAnswers.isEmpty());
-        assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
 
+        // Then
+        assertTrue(multipleChoiceQuestion.getPossibleAnswers().isEmpty());
+        assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
         assertEquals(selectedAnswer, multipleChoiceQuestion.getSelectedAnswer());
-
     }
 
     @Test
-    void WhenUsingConstructorWithParamOfArrayList_ArrayListOfPossibleAnswers_SetArrayListOfPossibleAnswers(){
+    void WhenUsingConstructorWithParamOfArrayList_ArrayListOfPossibleAnswers_isSetProperly(){
+        // Given
         ArrayList<String> possibleAnswers = new ArrayList<String>();
         possibleAnswers.add("answer1");
         possibleAnswers.add("answer2");
         possibleAnswers.add("answer3");
         possibleAnswers.add("answer4");
 
+        // When
         MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(possibleAnswers);
+
+        // Then
+        assertNotNull(multipleChoiceQuestion.getPossibleAnswers());
         assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
+        assertEquals("answer1", multipleChoiceQuestion.getPossibleAnswers().get(0));
         assertEquals("answer2", multipleChoiceQuestion.getPossibleAnswers().get(1));
-    }
-
-    @Test
-    void WhenUsingConstructorWithParam_StringQuestion_ArrayListOfPossibleAnswers_StringCorrectAnswer_Question_PossibleAnswers_CorrectAnswer_HaveSetValues(){
-        ArrayList<String> possibleAnswers = new ArrayList<String>();
-        possibleAnswers.add("answer1");
-        possibleAnswers.add("answer2");
-        possibleAnswers.add("answer3");
-        possibleAnswers.add("answer4");
-        String question = "This is the a question.";
-        String answer = "The answer is answer4";
-
-        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(question, possibleAnswers, answer);
-
-        assertEquals("This is the a question.", multipleChoiceQuestion.getQuestion());
         assertEquals("answer3", multipleChoiceQuestion.getPossibleAnswers().get(2));
-        assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
-        assertEquals("The answer is answer4", multipleChoiceQuestion.getAnswer());
+        assertEquals("answer4", multipleChoiceQuestion.getPossibleAnswers().get(3));
     }
 
     @Test
-    void WhenValidatingIfAnswerIsCorrect_IsCorrectAnswerGivesABoolean(){
-        String userAnswer = "Answer1";
+    void WhenSettingPossibleAnswer_PossibleAnswersAreSetProperly(){
+        // Given
+        ArrayList<String> possibleAnswers = new ArrayList<String>();
+        possibleAnswers.add("answer1");
+        possibleAnswers.add("answer2");
+        possibleAnswers.add("answer3");
+        possibleAnswers.add("answer4");
+        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
+
+        // When
+        multipleChoiceQuestion.setPossibleAnswers(possibleAnswers);
+
+        // Then
+        assertNotNull(multipleChoiceQuestion.getPossibleAnswers());
+        assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
+        assertEquals("answer1", multipleChoiceQuestion.getPossibleAnswers().get(0));
+        assertEquals("answer2", multipleChoiceQuestion.getPossibleAnswers().get(1));
+        assertEquals("answer3", multipleChoiceQuestion.getPossibleAnswers().get(2));
+        assertEquals("answer4", multipleChoiceQuestion.getPossibleAnswers().get(3));
+    }
+
+    @Test
+    void WhenUsingConstructorWithAllParams_ValuesAreSetProperly(){
+        // Given
+        ArrayList<String> possibleAnswers = new ArrayList<String>();
+        possibleAnswers.add("answer1");
+        possibleAnswers.add("answer2");
+        possibleAnswers.add("answer3");
+        possibleAnswers.add("answer4");
+        String question = "This is a question.";
+        String answer = "The answer is answer4";
+        String selectedAnswer = "";
+
+        // When
+        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(question, possibleAnswers, answer);
+
+        assertEquals("This is a question.", multipleChoiceQuestion.getQuestion());
+        assertNotNull(multipleChoiceQuestion.getPossibleAnswers());
+        assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
+        assertEquals("answer1", multipleChoiceQuestion.getPossibleAnswers().get(0));
+        assertEquals("answer2", multipleChoiceQuestion.getPossibleAnswers().get(1));
+        assertEquals("answer3", multipleChoiceQuestion.getPossibleAnswers().get(2));
+        assertEquals("answer4", multipleChoiceQuestion.getPossibleAnswers().get(3));
+        assertEquals("The answer is answer4", multipleChoiceQuestion.getAnswer());
+        assertEquals(selectedAnswer, multipleChoiceQuestion.getSelectedAnswer());
+    }
+
+    @Test
+    void WhenValidatingIfAnswerIsCorrect_IsCorrectAnswerReturnsBooleanTrue_WhenSelectedAnswerAndCorrectAnswerAreTheSame(){
+
+        // Given
+        String userAnswer = "answer1";
+        String question = "This is the a question";
+        String answer = "answer1";
 
         ArrayList<String> possibleAnswers = new ArrayList<String>();
         possibleAnswers.add("answer1");
         possibleAnswers.add("answer2");
         possibleAnswers.add("answer3");
         possibleAnswers.add("answer4");
-        String question = "This is the a question";
-        String answer = "Answer2";
 
         MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(question, possibleAnswers, answer);
-
         multipleChoiceQuestion.setSelectedAnswer(userAnswer);
-        assertFalse(multipleChoiceQuestion.isCorrectAnswer(), userAnswer);
+        multipleChoiceQuestion.setAnswer(answer);
 
-        multipleChoiceQuestion.setAnswer("Answer1");
+        // When
+        boolean result = multipleChoiceQuestion.isCorrectAnswer();
+
+        // Then
         assertTrue(multipleChoiceQuestion.isCorrectAnswer(), userAnswer);
+    }
 
-        multipleChoiceQuestion.setSelectedAnswer("Answer3");
+    @Test
+    void WhenValidatingIfAnswerIsCorrect_IsCorrectAnswerReturnsBooleanFalse_WhenSelectedAnswerAndCorrectAnswerAreNotTheSame(){
+
+        // Given
+        String userAnswer = "answer1";
+        String question = "This is the a question";
+        String answer = "answer2";
+
+        ArrayList<String> possibleAnswers = new ArrayList<String>();
+        possibleAnswers.add("answer1");
+        possibleAnswers.add("answer2");
+        possibleAnswers.add("answer3");
+        possibleAnswers.add("answer4");
+
+        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(question, possibleAnswers, answer);
+        multipleChoiceQuestion.setSelectedAnswer(userAnswer);
+        multipleChoiceQuestion.setAnswer(answer);
+
+        // When
+        boolean result = multipleChoiceQuestion.isCorrectAnswer();
+
+        // Then
         assertFalse(multipleChoiceQuestion.isCorrectAnswer(), userAnswer);
     }
 }
