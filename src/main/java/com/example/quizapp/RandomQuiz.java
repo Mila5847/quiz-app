@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class RandomQuiz extends Quiz implements IShufflable{
     // Attributes of a random quiz
     private ArrayList<MultipleChoiceQuestion> randomQuestions = new ArrayList<MultipleChoiceQuestion>();
+    //File fileWithQuestions = new File("randomQuestions.txt");
     int countCorrectAnswers = 0;
     String correctedQuestions = "";
     String completeQuizMessage = "";
@@ -21,18 +22,41 @@ public class RandomQuiz extends Quiz implements IShufflable{
     public ArrayList<MultipleChoiceQuestion> getRandomQuestions(){
         return this.randomQuestions;
     }
+    public int getCountCorrectAnswers(){
+        return this.countCorrectAnswers;
+    }
+    public String getCorrectedQuestions(){
+        return this.correctedQuestions;
+    }
+    public String getCompleteQuizMessage(){
+        return this.completeQuizMessage;
+    }
+    public String getScore(){
+        return this.score;
+    }
 
     // Setters
     public void setRandomQuestions(ArrayList<MultipleChoiceQuestion> randomQuestions){
         this.randomQuestions = randomQuestions;
     }
+    public void setCountCorrectAnswers(int countCorrectAnswers){
+        this.countCorrectAnswers = countCorrectAnswers;
+    }
+    /*public void setCorrectedQuestions(String correctedQuestions){
+        this.correctedQuestions = correctedQuestions;
+    }
+    public void setCompleteQuizMessage(String completeQuizMessage){
+        this.completeQuizMessage = completeQuizMessage;
+    }
+    public void setScore(String score){
+        this.score = score;
+    }*/
 
     @Override
-    public void initialize() throws FileNotFoundException {
+    public void initialize(File fileWithRandomQuestion) throws FileNotFoundException {
         randomQuestions.clear();
 
-        File fileWithQuestions = new File("randomQuestions.txt");
-        Scanner scanner = new Scanner(fileWithQuestions);
+        Scanner scanner = new Scanner(fileWithRandomQuestion);
 
         while(scanner.hasNextLine()){
             String question = scanner.nextLine();
@@ -75,7 +99,7 @@ public class RandomQuiz extends Quiz implements IShufflable{
                         "Correct answer: " + randomQuestions.get(i).getAnswer() + "\n";
             }
         }
-        score = "Score " + countCorrectAnswers + " /3";
+        score = "Score " + countCorrectAnswers + "/3";
     }
 
     @Override

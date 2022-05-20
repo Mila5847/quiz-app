@@ -15,6 +15,7 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,10 +27,11 @@ public class QuizUI extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        File fileWithQuestions = new File("randomQuestions.txt");
 
         // Starting the quiz with random questions
         RandomQuiz randomQuiz = new RandomQuiz();
-        randomQuiz.initialize();
+        randomQuiz.initialize(fileWithQuestions);
         randomQuiz.shuffle();
 
         // Defining the layout of the screen
@@ -146,7 +148,7 @@ public class QuizUI extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
-                    randomQuiz.initialize();
+                    randomQuiz.initialize(fileWithQuestions);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

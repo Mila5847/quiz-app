@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestMultipleChoiceQuestion {
+public class TestMultipleChoiceQuestionClass {
 
     @Test
     void WhenSettingQuestionProperty_QuestionIsSetProperly(){
@@ -107,6 +107,7 @@ public class TestMultipleChoiceQuestion {
         // When
         MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(question, possibleAnswers, answer);
 
+        // Then
         assertEquals("This is a question.", multipleChoiceQuestion.getQuestion());
         assertNotNull(multipleChoiceQuestion.getPossibleAnswers());
         assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
@@ -120,7 +121,6 @@ public class TestMultipleChoiceQuestion {
 
     @Test
     void WhenValidatingIfAnswerIsCorrect_IsCorrectAnswerReturnsBooleanTrue_WhenSelectedAnswerAndCorrectAnswerAreTheSame(){
-
         // Given
         String userAnswer = "answer1";
         String question = "This is the a question";
@@ -145,7 +145,6 @@ public class TestMultipleChoiceQuestion {
 
     @Test
     void WhenValidatingIfAnswerIsCorrect_IsCorrectAnswerReturnsBooleanFalse_WhenSelectedAnswerAndCorrectAnswerAreNotTheSame(){
-
         // Given
         String userAnswer = "answer1";
         String question = "This is the a question";

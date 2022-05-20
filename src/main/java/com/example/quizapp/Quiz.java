@@ -21,7 +21,7 @@ public class Quiz implements IQuizzable{
     }
 
     @Override
-    public void initialize() throws FileNotFoundException {
+    public void initialize(File file) throws FileNotFoundException {
         throw new UnsupportedOperationException("The method is not implemented.");
     }
 

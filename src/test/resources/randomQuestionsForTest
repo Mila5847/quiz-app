@@ -1,3 +1,0 @@
-If class A inherits from class B, class A is the;superclass;subclass;secondClass;smallerClass;subclass
-This key word is used in an aggregation relationship;extends;implements;derives;no key word;no key word
-Abstract methods must be;overloaded;ignored;overridden;deleted;overridden
