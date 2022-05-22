@@ -20,13 +20,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// This class presents the UI of the quiz.
 public class QuizUI extends Application {
-
     public String instructions = "1. Start a new quiz with the \"New Quiz\" button. \n2. Select a question.\n3. Select an answer.\n4. Submit quiz";
     public int currentQuestionNumber = 0;
 
     @Override
     public void start(Stage stage) throws IOException {
+        // Given the file with questions
         File fileWithQuestions = new File("randomQuestions.txt");
 
         // Starting the quiz with random questions
@@ -34,19 +35,18 @@ public class QuizUI extends Application {
         randomQuiz.initialize(fileWithQuestions);
         randomQuiz.shuffle();
 
-        // Defining the layout of the screen
+        // Defining the layout of the UI
         HBox entireScreen = new HBox();
         entireScreen.setStyle("-fx-background-color: #4F96A1");
         entireScreen.setMinWidth(960);
         entireScreen.setMinHeight(620);
 
-        /*VBox containing the 3 questions on the side, the displayed questions,
-        the "submit quiz", the "new quiz" buttons, and the 4 possible answers.*/
+        /* VBox containing the 3 questions on the left side, the displayed questions on the right side,
+        the "submit quiz" and the "new quiz" buttons, and the 4 possible answers at the bottom. */
         VBox mainContainerVerticalBox = new VBox();
 
         // Display of the question in a label
-        Label questionDisplay = new Label();
-        questionDisplay.setText(instructions);
+        Label questionDisplay = new Label(instructions);
         questionDisplay.setPrefWidth(700);
         questionDisplay.setPrefHeight(340);
         questionDisplay.getStyleClass().add("lbl");
@@ -54,7 +54,7 @@ public class QuizUI extends Application {
         entireScreen.getChildren().add(questionDisplay);
         HBox.setMargin(questionDisplay, new Insets(10));
 
-        // 4 possible answers in a horizontal box
+        // 4 Possible answers in a horizontal box
         HBox possibleAnswersHBox = new HBox();
         possibleAnswersHBox.setStyle("-fx-background-color: #D9FFE0");
         possibleAnswersHBox.setPrefWidth(300);
@@ -127,6 +127,7 @@ public class QuizUI extends Application {
             }
         });
 
+        // Displaying the summary of the user's performance in a popup
         Button submitQuizButton = createButton("Submit Quiz", 150, 70, "btn-warning");
         submitQuizButton.setShape(circleShapedButton);
         submitQuizButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -195,6 +196,7 @@ public class QuizUI extends Application {
         stage.show();
     }
 
+    // Method to create a button with parameters
     private Button createButton(String name, int width, int height, String buttonStyle){
         Button button = new Button(name);
         button.setPrefWidth(width);
@@ -203,6 +205,8 @@ public class QuizUI extends Application {
         return button;
     }
 
+    /* This is the event handler that gets triggered when a different question is selected.
+    Method to display the correct set of possible answers depending on the current question. */
     private void setQuestionButtonEventHandler(Label questionDisplay, Button answer1Button, Button answer2Button, Button answer3Button, Button answer4Button, RandomQuiz randomQuiz, int questionNumber){
         questionDisplay.setText(randomQuiz.getRandomQuestions().get(questionNumber).getQuestion());
         answer1Button.setText(randomQuiz.getRandomQuestions().get(questionNumber).getPossibleAnswers().get(0));
@@ -212,8 +216,10 @@ public class QuizUI extends Application {
         this.currentQuestionNumber = questionNumber;
     }
 
+    // Event handler that gets triggered when the desired answer is selected.
     private void setAnswerButtonEventHandler(RandomQuiz randomQuiz, Button answerButton, int currentQuestionNumber){
         randomQuiz.getRandomQuestions().get(currentQuestionNumber).setSelectedAnswer(answerButton.getText());
+        answerButton.setStyle("-fx-background-color: red");
     }
 
     public static void main(String[] args) {

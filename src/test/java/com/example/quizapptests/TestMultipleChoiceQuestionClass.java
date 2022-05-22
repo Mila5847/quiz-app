@@ -50,28 +50,6 @@ public class TestMultipleChoiceQuestionClass {
     }
 
     @Test
-    void WhenSettingPossibleAnswer_PossibleAnswersAreSetProperly(){
-        // Given
-        ArrayList<String> possibleAnswers = new ArrayList<String>();
-        possibleAnswers.add("answer1");
-        possibleAnswers.add("answer2");
-        possibleAnswers.add("answer3");
-        possibleAnswers.add("answer4");
-        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
-
-        // When
-        multipleChoiceQuestion.setPossibleAnswers(possibleAnswers);
-
-        // Then
-        assertNotNull(multipleChoiceQuestion.getPossibleAnswers());
-        assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
-        assertEquals("answer1", multipleChoiceQuestion.getPossibleAnswers().get(0));
-        assertEquals("answer2", multipleChoiceQuestion.getPossibleAnswers().get(1));
-        assertEquals("answer3", multipleChoiceQuestion.getPossibleAnswers().get(2));
-        assertEquals("answer4", multipleChoiceQuestion.getPossibleAnswers().get(3));
-    }
-
-    @Test
     void WhenUsingConstructorWithAllParams_ValuesAreSetProperly(){
         // Given
         ArrayList<String> possibleAnswers = new ArrayList<String>();
@@ -99,6 +77,28 @@ public class TestMultipleChoiceQuestionClass {
     }
 
     @Test
+    void WhenSettingPossibleAnswer_PossibleAnswersAreSetProperly(){
+        // Given
+        ArrayList<String> possibleAnswers = new ArrayList<String>();
+        possibleAnswers.add("answer1");
+        possibleAnswers.add("answer2");
+        possibleAnswers.add("answer3");
+        possibleAnswers.add("answer4");
+        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
+
+        // When
+        multipleChoiceQuestion.setPossibleAnswers(possibleAnswers);
+
+        // Then
+        assertNotNull(multipleChoiceQuestion.getPossibleAnswers());
+        assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
+        assertEquals("answer1", multipleChoiceQuestion.getPossibleAnswers().get(0));
+        assertEquals("answer2", multipleChoiceQuestion.getPossibleAnswers().get(1));
+        assertEquals("answer3", multipleChoiceQuestion.getPossibleAnswers().get(2));
+        assertEquals("answer4", multipleChoiceQuestion.getPossibleAnswers().get(3));
+    }
+
+    @Test
     void WhenValidatingIfAnswerIsCorrect_IsCorrectAnswerReturnsBooleanTrue_WhenSelectedAnswerAndCorrectAnswerAreTheSame(){
         // Given
         String userAnswer = "answer1";
@@ -119,7 +119,7 @@ public class TestMultipleChoiceQuestionClass {
         boolean result = multipleChoiceQuestion.isCorrectAnswer();
 
         // Then
-        assertTrue(multipleChoiceQuestion.isCorrectAnswer(), userAnswer);
+        assertTrue(result);
     }
 
     @Test
@@ -143,6 +143,6 @@ public class TestMultipleChoiceQuestionClass {
         boolean result = multipleChoiceQuestion.isCorrectAnswer();
 
         // Then
-        assertFalse(multipleChoiceQuestion.isCorrectAnswer(), userAnswer);
+        assertFalse(result);
     }
 }

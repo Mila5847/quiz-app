@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+/* This class creates a random quiz with three random questions.
+It also creates the messages that will be displayed in the summary display. */
 public class RandomQuiz extends Quiz implements IShufflable{
     // Attributes of a random quiz
     private ArrayList<MultipleChoiceQuestion> randomQuestions = new ArrayList<MultipleChoiceQuestion>();
@@ -14,22 +16,26 @@ public class RandomQuiz extends Quiz implements IShufflable{
     private String completeQuizMessage = "";
     private String score = "Score: /3";
 
-    // Constructors of random quiz
+    // Constructor of random quiz
     public RandomQuiz(){}
 
     // Getters
     public ArrayList<MultipleChoiceQuestion> getRandomQuestions(){
         return this.randomQuestions;
     }
+
     public int getCountCorrectAnswers(){
         return this.countCorrectAnswers;
     }
+
     public String getCorrectedQuestions(){
         return this.correctedQuestions;
     }
+
     public String getCompleteQuizMessage(){
         return this.completeQuizMessage;
     }
+
     public String getScore(){
         return this.score;
     }
@@ -38,18 +44,26 @@ public class RandomQuiz extends Quiz implements IShufflable{
     public void setRandomQuestions(ArrayList<MultipleChoiceQuestion> randomQuestions){
         this.randomQuestions = randomQuestions;
     }
+
     public void setCountCorrectAnswers(int countCorrectAnswers){
         this.countCorrectAnswers = countCorrectAnswers;
     }
+
     public void setCorrectedQuestions(String correctedQuestions){
         this.correctedQuestions = correctedQuestions;
     }
+
     public void setCompleteQuizMessage(String completeQuizMessage){
         this.completeQuizMessage = completeQuizMessage;
     }
+
     public void setScore(String score){
         this.score = score;
     }
+
+    /* This method reads from a file and stores the information in variables or ArrayLists. Each line of the
+    file contains a question, four possible answers, and the correct answer. The question and the correct answer
+    are stored in variables, while the possible answers for each question are stored in an ArrayList. */
     @Override
     public void initialize(File fileWithRandomQuestion) throws FileNotFoundException {
         randomQuestions.clear();
@@ -61,7 +75,11 @@ public class RandomQuiz extends Quiz implements IShufflable{
 
             while (scanner.hasNextLine()) {
                 String question = scanner.nextLine();
+                // The question, the possible answers, and the correct answer are separated by a semicolon in each line.
                 String[] questionComposition = question.split(";");
+
+                /* Creation of a multiple choice question which will contain a question, four possible answers
+                and the correct answer. */
                 MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
                 multipleChoiceQuestion.setQuestion(questionComposition[0]);
                 ArrayList<String> possibleAnswers = new ArrayList<String>();
@@ -73,8 +91,8 @@ public class RandomQuiz extends Quiz implements IShufflable{
                 randomQuestions.add(multipleChoiceQuestion);
             }
         } catch(Exception e){
-            // If the file is not found, empty, or its content is invalid, the program will still display the UI,
-            // but there will be no questions to display and exception will be thrown.
+            /* If the file is not found, empty, or its content is invalid, the program will still display the UI,
+            but there will be no questions to display and exception will be thrown without crashing the program. */
         }
         finally {
             scanner.close();
@@ -85,11 +103,13 @@ public class RandomQuiz extends Quiz implements IShufflable{
         score = "Score: /3";
     }
 
+    // This method changes the order of the questions in the ArrayList
     @Override
     public void shuffle() {
         Collections.shuffle(randomQuestions);
     }
 
+    /* This method completes the quiz and prepares the result data to be displayed back to the user. */
     @Override
     public void submit() {
         if(randomQuestions.get(0).getSelectedAnswer().equals("") && randomQuestions.get(1).getSelectedAnswer().equals("") && randomQuestions.get(2).getSelectedAnswer().equals("")){
@@ -108,6 +128,7 @@ public class RandomQuiz extends Quiz implements IShufflable{
         score = "Score " + countCorrectAnswers + "/3";
     }
 
+    // This method returns the score, the summary of the quiz and a fun message depending on the score.
     @Override
     public String summaryDisplay() {
         // Source of jokes: https://www.hongkiat.com/blog/programming-jokes/.

@@ -1,8 +1,6 @@
 package com.example.quizapp;
 
-// This class sets the basis of a question.
-// Each question has an answer. The MultipleChoiceQuestion will extend from this class.
-
+// This class sets the basis of a question. Each question has an answer.
 public abstract class Question implements IValidatable{
     // Attributes of a question
     private String question;

@@ -2,10 +2,8 @@ package com.example.quizapp;
 
 import java.util.ArrayList;
 
-// This class is more specific than the Question class since it is a multiple choice quiz.
-// A multiple choice quiz IS A quiz, so it derives from the Quiz class.
-// A multiple choice question has 3 possible answers, and it also contains the answer selected by the user.
-
+// A multiple choice question IS A question, so it derives from the Question class.
+// A multiple choice question has 4 possible answers, and it also contains the answer selected by the user.
 public class MultipleChoiceQuestion extends Question{
     // Attributes of a multiple choice question
     private ArrayList<String> possibleAnswers = new ArrayList<String>();
@@ -38,6 +36,7 @@ public class MultipleChoiceQuestion extends Question{
         this.selectedAnswer = selectedAnswer;
     }
 
+    // This method validates if the selected answer is the same as the correct answer and returns a boolean
     @Override
     public boolean isCorrectAnswer() {
         return this.selectedAnswer.equals(this.getAnswer());
