@@ -42,7 +42,7 @@ public class QuizUI extends Application {
 
         /*VBox containing the 3 questions on the side, the displayed questions,
         the "submit quiz", the "new quiz" buttons, and the 4 possible answers.*/
-        VBox verticalBoxWithEverything = new VBox();
+        VBox mainContainerVerticalBox = new VBox();
 
         // Display of the question in a label
         Label questionDisplay = new Label();
@@ -60,34 +60,22 @@ public class QuizUI extends Application {
         possibleAnswersHBox.setPrefWidth(300);
         possibleAnswersHBox.setPrefHeight(100);
 
-        Button answer1Button = new Button("Answer 1");
-        answer1Button.setPrefHeight(80);
-        answer1Button.setPrefWidth(250);
-        answer1Button.getStyleClass().addAll("btn", "btn-warning");
+        Button answer1Button = createButton("Answer 1", 250, 80, "btn-warning");
         answer1Button.setOnAction(actionEvent -> {
            setAnswerButtonEventHandler(randomQuiz, answer1Button, currentQuestionNumber);
         });
 
-        Button answer2Button = new Button("Answer 2");
-        answer2Button.setPrefHeight(80);
-        answer2Button.setPrefWidth(250);
-        answer2Button.getStyleClass().addAll("btn", "btn-warning");
+        Button answer2Button = createButton("Answer 2", 250, 80, "btn-warning");
         answer2Button.setOnAction(actionEvent -> {
             setAnswerButtonEventHandler(randomQuiz, answer2Button, currentQuestionNumber);
         });
 
-        Button answer3Button = new Button("Answer 3");
-        answer3Button.setPrefHeight(80);
-        answer3Button.setPrefWidth(250);
-        answer3Button.getStyleClass().addAll("btn", "btn-warning");
+        Button answer3Button = createButton("Answer 3", 250, 80, "btn-warning");
         answer3Button.setOnAction(actionEvent -> {
             setAnswerButtonEventHandler(randomQuiz, answer3Button, currentQuestionNumber);
         });
 
-        Button answer4Button = new Button("Answer 4");
-        answer4Button.setPrefHeight(80);
-        answer4Button.setPrefWidth(250);
-        answer4Button.getStyleClass().addAll("btn", "btn-warning");
+        Button answer4Button = createButton("Answer 4", 250, 80, "btn-warning");
         answer4Button.setOnAction(actionEvent -> {
             setAnswerButtonEventHandler(randomQuiz, answer4Button, currentQuestionNumber);
         });
@@ -96,30 +84,17 @@ public class QuizUI extends Application {
         // 3 Questions in a vertical box
         HBox threeQuestionsAndDisplayedQuestion = new HBox();
 
-
-        Button question1Button = new Button("Question 1");
-        question1Button.setPrefHeight(100);
-        question1Button.setPrefWidth(200);
-        question1Button.getStyleClass().addAll("btn", "btn-warning");
-
+        Button question1Button = createButton("Question 1", 200, 100, "btn-warning");
         question1Button.setOnAction(event -> {
             setQuestionButtonEventHandler(questionDisplay, answer1Button, answer2Button, answer3Button, answer4Button, randomQuiz, 0);
         });
 
-        Button question2Button = new Button("Question 2");
-        question2Button.setPrefHeight(100);
-        question2Button.setPrefWidth(200);
-        question2Button.getStyleClass().addAll("btn", "btn-warning");
-
+        Button question2Button = createButton("Question 2", 200, 100, "btn-warning");
         question2Button.setOnAction(event -> {
             setQuestionButtonEventHandler(questionDisplay, answer1Button, answer2Button, answer3Button, answer4Button, randomQuiz, 1);
         });
 
-        Button question3Button = new Button("Question 3");
-        question3Button.setPrefHeight(100);
-        question3Button.setPrefWidth(200);
-        question3Button.getStyleClass().addAll("btn", "btn-warning");
-
+        Button question3Button = createButton("Question 3", 200, 100, "btn-warning");
         question3Button.setOnAction(event -> {
             setQuestionButtonEventHandler(questionDisplay, answer1Button, answer2Button, answer3Button, answer4Button, randomQuiz, 2);
         });
@@ -137,13 +112,8 @@ public class QuizUI extends Application {
         HBox buttonsBox = new HBox();
         Circle circleShapedButton = new Circle(0.5);
 
-        Button newQuizButton = new Button();
-        newQuizButton.setText("New Quiz");
-        newQuizButton.setPrefWidth(150);
-        newQuizButton.setPrefHeight(70);
+        Button newQuizButton = createButton("New Quiz", 150, 70, "btn-warning");
         newQuizButton.setShape(circleShapedButton);
-        newQuizButton.getStyleClass().addAll("btn", "btn-warning");
-
         newQuizButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -157,13 +127,8 @@ public class QuizUI extends Application {
             }
         });
 
-        Button submitQuizButton = new Button();
-        submitQuizButton.setText("Submit Quiz");
-        submitQuizButton.setPrefWidth(150);
-        submitQuizButton.setPrefHeight(70);
+        Button submitQuizButton = createButton("Submit Quiz", 150, 70, "btn-warning");
         submitQuizButton.setShape(circleShapedButton);
-        submitQuizButton.getStyleClass().addAll("btn", "btn-warning");
-
         submitQuizButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -184,19 +149,16 @@ public class QuizUI extends Application {
                 hBoxSummaryText.setAlignment(Pos.CENTER);
                 hBoxSummaryText.setStyle("-fx-background-color: linear-gradient(#4F96A1 10%, #D9FFE0 60%, #e68327 90%);");
 
-                Button returnButton = new Button("Return to game");
-                returnButton.setPrefHeight(50);
-                returnButton.setPrefWidth(150);
-                returnButton.getStyleClass().addAll("btn");
+                Button returnButton = createButton("Return to Game", 150, 50, "");
                 returnButton.setStyle("-fx-background-color: #4F96A1; -fx-text-fill: white");
                 returnButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         popup.hide();
-                        randomQuiz.countCorrectAnswers = 0;
-                        randomQuiz.correctedQuestions = "";
-                        randomQuiz.completeQuizMessage = "";
-                        randomQuiz.score = "Score: /3";
+                        randomQuiz.setCountCorrectAnswers(0);
+                        randomQuiz.setCorrectedQuestions("");
+                        randomQuiz.setCompleteQuizMessage("");
+                        randomQuiz.setScore("Score: /3");
                     }
                 });
 
@@ -220,10 +182,10 @@ public class QuizUI extends Application {
         HBox.setMargin(answer3Button, new Insets(10));
         HBox.setMargin(answer4Button, new Insets(10));
 
-        verticalBoxWithEverything.getChildren().addAll(threeQuestionsAndDisplayedQuestion, buttonsBox, possibleAnswersHBox);
+        mainContainerVerticalBox.getChildren().addAll(threeQuestionsAndDisplayedQuestion, buttonsBox, possibleAnswersHBox);
         VBox.setMargin(buttonsBox, new Insets(0, 0, 40, 300));
         VBox.setMargin(possibleAnswersHBox, new Insets(0, 0, 0, 30));
-        entireScreen.getChildren().add(verticalBoxWithEverything);
+        entireScreen.getChildren().add(mainContainerVerticalBox);
 
         Scene scene = new Scene(entireScreen);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
@@ -231,7 +193,14 @@ public class QuizUI extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+    }
 
+    private Button createButton(String name, int width, int height, String buttonStyle){
+        Button button = new Button(name);
+        button.setPrefWidth(width);
+        button.setPrefHeight(height);
+        button.getStyleClass().addAll("btn", buttonStyle);
+        return button;
     }
 
     private void setQuestionButtonEventHandler(Label questionDisplay, Button answer1Button, Button answer2Button, Button answer3Button, Button answer4Button, RandomQuiz randomQuiz, int questionNumber){

@@ -9,11 +9,10 @@ import java.util.Scanner;
 public class RandomQuiz extends Quiz implements IShufflable{
     // Attributes of a random quiz
     private ArrayList<MultipleChoiceQuestion> randomQuestions = new ArrayList<MultipleChoiceQuestion>();
-    //File fileWithQuestions = new File("randomQuestions.txt");
-    int countCorrectAnswers = 0;
-    String correctedQuestions = "";
-    String completeQuizMessage = "";
-    String score = "Score: /3";
+    private int countCorrectAnswers = 0;
+    private String correctedQuestions = "";
+    private String completeQuizMessage = "";
+    private String score = "Score: /3";
 
     // Constructors of random quiz
     public RandomQuiz(){}
@@ -42,7 +41,7 @@ public class RandomQuiz extends Quiz implements IShufflable{
     public void setCountCorrectAnswers(int countCorrectAnswers){
         this.countCorrectAnswers = countCorrectAnswers;
     }
-    /*public void setCorrectedQuestions(String correctedQuestions){
+    public void setCorrectedQuestions(String correctedQuestions){
         this.correctedQuestions = correctedQuestions;
     }
     public void setCompleteQuizMessage(String completeQuizMessage){
@@ -50,29 +49,36 @@ public class RandomQuiz extends Quiz implements IShufflable{
     }
     public void setScore(String score){
         this.score = score;
-    }*/
-
+    }
     @Override
     public void initialize(File fileWithRandomQuestion) throws FileNotFoundException {
         randomQuestions.clear();
+        
+        Scanner scanner = null;
 
-        Scanner scanner = new Scanner(fileWithRandomQuestion);
+        try {
+            scanner = new Scanner(fileWithRandomQuestion);
 
-        while(scanner.hasNextLine()){
-            String question = scanner.nextLine();
-            String[] questionComposition = question.split(";");
-            MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
-            multipleChoiceQuestion.setQuestion(questionComposition[0]);
-            ArrayList<String> possibleAnswers = new ArrayList<String>();
-            for(int i = 1; i < 5; i++) {
-                possibleAnswers.add(questionComposition[i]);
+            while (scanner.hasNextLine()) {
+                String question = scanner.nextLine();
+                String[] questionComposition = question.split(";");
+                MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
+                multipleChoiceQuestion.setQuestion(questionComposition[0]);
+                ArrayList<String> possibleAnswers = new ArrayList<String>();
+                for (int i = 1; i < 5; i++) {
+                    possibleAnswers.add(questionComposition[i]);
+                }
+                multipleChoiceQuestion.setPossibleAnswers(possibleAnswers);
+                multipleChoiceQuestion.setAnswer(questionComposition[5]);
+                randomQuestions.add(multipleChoiceQuestion);
             }
-            multipleChoiceQuestion.setPossibleAnswers(possibleAnswers);
-            multipleChoiceQuestion.setAnswer(questionComposition[5]);
-            randomQuestions.add(multipleChoiceQuestion);
+        } catch(Exception e){
+            // If the file is not found, empty, or its content is invalid, the program will still display the UI,
+            // but there will be no questions to display and exception will be thrown.
         }
-        // Finally
-        scanner.close();
+        finally {
+            scanner.close();
+        }
         countCorrectAnswers = 0;
         correctedQuestions = "";
         completeQuizMessage = "";

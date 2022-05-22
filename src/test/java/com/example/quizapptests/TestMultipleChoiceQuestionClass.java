@@ -50,27 +50,6 @@ public class TestMultipleChoiceQuestionClass {
     }
 
     @Test
-    void WhenUsingConstructorWithParamOfArrayList_ArrayListOfPossibleAnswers_isSetProperly(){
-        // Given
-        ArrayList<String> possibleAnswers = new ArrayList<String>();
-        possibleAnswers.add("answer1");
-        possibleAnswers.add("answer2");
-        possibleAnswers.add("answer3");
-        possibleAnswers.add("answer4");
-
-        // When
-        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(possibleAnswers);
-
-        // Then
-        assertNotNull(multipleChoiceQuestion.getPossibleAnswers());
-        assertEquals(possibleAnswers, multipleChoiceQuestion.getPossibleAnswers());
-        assertEquals("answer1", multipleChoiceQuestion.getPossibleAnswers().get(0));
-        assertEquals("answer2", multipleChoiceQuestion.getPossibleAnswers().get(1));
-        assertEquals("answer3", multipleChoiceQuestion.getPossibleAnswers().get(2));
-        assertEquals("answer4", multipleChoiceQuestion.getPossibleAnswers().get(3));
-    }
-
-    @Test
     void WhenSettingPossibleAnswer_PossibleAnswersAreSetProperly(){
         // Given
         ArrayList<String> possibleAnswers = new ArrayList<String>();

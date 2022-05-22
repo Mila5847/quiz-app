@@ -14,10 +14,6 @@ public class MultipleChoiceQuestion extends Question{
     // Constructors of a multiple choice question
     public MultipleChoiceQuestion(){}
 
-    public MultipleChoiceQuestion(ArrayList<String> possibleAnswers){
-        this.possibleAnswers = possibleAnswers;
-    }
-
     public MultipleChoiceQuestion(String question, ArrayList<String> possibleAnswers, String correctAnswer){
         super(question,correctAnswer);
         this.possibleAnswers = possibleAnswers;

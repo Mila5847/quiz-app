@@ -172,6 +172,7 @@ public class TestRandomQuizClass {
         boolean question6IsAtInitialPosition = randomQuiz.getRandomQuestions().get(5).getQuestion().equals("Question6");
 
         // Then
+        // If at least one of the questions is not at its initial position, this means that the shuffle has worked.
         assertFalse(question1IsAtInitialPosition && question2IsAtInitialPosition && question3IsAtInitialPosition && question4IsAtInitialPosition && question5IsAtInitialPosition && question6IsAtInitialPosition);
     }
 

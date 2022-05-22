@@ -14,6 +14,13 @@ The application is build using an IDE called _IntelliJ IDEA_. It is written in _
 
 #### Features for Improvement
 1. The application and its components such as buttons and the label for the question are not resizable. If the question or the answers are longer than the width of their containers (buttons or labels), the content of the String is not entirely displayed (suspension points shows that the String is too long). I believe that implementing a feature which allows the user to hover over the String (in the button or the label) to see its entire content would be useful.
-2. If someone decides to create a Quiz, instead of a RandomQuiz, the questions from the Quiz would not be shuffled, since they are not selected randomly. However, everytime a new quiz is started, the three questions would always be the same since they do not get shuffled. ..........
+2. If someone decides to create a Quiz, instead of a RandomQuiz, the _IQuizzable_ interface must be implemented in the desired way.
+## Design
+### Classes Structure of the Application
+The application has multiple classes and interfaces. There is an abstract class called _Question_. It contains the basic information of a question which is the question itself and the answer. The Question class implements an interace called _IValidatable_ which has a method that validates if the answer selected by the user is correct or not. The _MultipleChoiceQuestion_ class extends the _Question_ class since a multiple choice question is a question. Besides a question and an answer, a multiple choice question also contains an ArrayList of possible answers and a selected answer for each question. There is a _Quiz_ class  which contains an ArrayList of multiple choice questions. The class implements the _IQuizzable_ interface which contains a method to initialize the quiz, to submit it, and to display the summary display. The initialize method reads from a file and stores the different parts of a file's line in variables or ArrayList, as mentionned above. This makes the quiz application flexible to other types of quiz by chnaging the file's content to different questions. The _RandomQuiz_ class extends the _Quiz_ class since a random quiz is a quiz. However, the _RandomQuiz_ class implements the _IShufflable_ interface which mix the questions in the ArrayList they are stored. By doing this, the random questions have less chance of being repeated when a new quiz is initialized. The _QuizUI_ class contains the user interface wiht the labels and buttons. It is the part of the application with which the user interact.  
 
+## Notes
+For the sake of this project, the _IQuizzable_ interface was only implemented to the _RandomQuiz_ class since the quiz's purpose is to generate random questions. The _Quiz_ class can be instantiated to other subclasses definding specific quizes, like the _RandomQuestion_ class. This allows the application to  be extended on multiple levels.
+
+### UML Diagram
 
