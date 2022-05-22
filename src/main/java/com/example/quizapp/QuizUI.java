@@ -219,7 +219,6 @@ public class QuizUI extends Application {
     // Event handler that gets triggered when the desired answer is selected.
     private void setAnswerButtonEventHandler(RandomQuiz randomQuiz, Button answerButton, int currentQuestionNumber){
         randomQuiz.getRandomQuestions().get(currentQuestionNumber).setSelectedAnswer(answerButton.getText());
-        answerButton.setStyle("-fx-background-color: red");
     }
 
     public static void main(String[] args) {

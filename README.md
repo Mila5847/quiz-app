@@ -15,6 +15,7 @@ This desktop application is build using _Java_, _JavaFX_, and _BootstrapFX_ to c
 #### Features for Improvement
 1. The application and its components such as buttons and the label for the question are not resizable. If the question or the answers are longer than the width of their containers (buttons or labels), the content of the String is not entirely displayed (suspension points on the UI show that the String is too long). I believe that implementing a feature which allows the user to hover over the String (in the button or the label) to see its entire content would be useful or to make the UI more responsive.
 2. I would like to create a Quiz instead of a random quiz by implementing the _IQuizzable_ interface in a different way. For example, I would want the questions to be sequentially displayed (not randomly) when a new quiz starts. For example, the first time a quiz is initialized, it would display the questions from one to three. When a new quiz is started with the "New Quiz" button, I would want questions four to six to be displayed.
+3. When an answer is selected, I would like to highlight the answer by changing its background color. When I come back to the question, the answer should still be highlighted. Currently, the selected answer is only highlighted when clicked, but when I go to another question and then come back to the same one, it is not highlighted anymore even though the answer has been selected. 
 
 ## Design
 ### Classes Structure of the Application
@@ -24,7 +25,10 @@ The application has multiple classes and interfaces. There is an abstract class 
 ![UML Diagram](UML.png)
 
 ### Screenshots of the Application
+![Display of initial screen](initialDisplayUI.png)
+![Display of one quesiton on screen](questionDisplayUI.png)
+![Display of summary on screen](summaryDisplayUI.png)
 
 ## Notes
-For the sake of this project, the _IQuizzable_ interface was only implemented to the _RandomQuiz_ class since the quiz's purpose is to generate random questions. The _Quiz_ class can be instantiated to other subclasses definding other specific quizes. This allows the application to be extended on multiple levels.
+For the sake of this project, the _IQuizzable_ interface was only implemented to the _RandomQuiz_ class since the quiz's purpose is to generate random questions. The _Quiz_ and the _Question_ classes can be extended by other subclasses definding other specific quizes and questions. This allows the application to be extended on multiple levels.
 
