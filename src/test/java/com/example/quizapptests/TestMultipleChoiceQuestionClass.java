@@ -101,7 +101,7 @@ public class TestMultipleChoiceQuestionClass {
     @Test
     void WhenValidatingIfAnswerIsCorrect_IsCorrectAnswerReturnsBooleanTrue_WhenSelectedAnswerAndCorrectAnswerAreTheSame(){
         // Given
-        String userAnswer = "answer1";
+        String selectedAnswer = "answer1";
         String question = "This is the a question";
         String answer = "answer1";
 
@@ -112,7 +112,7 @@ public class TestMultipleChoiceQuestionClass {
         possibleAnswers.add("answer4");
 
         MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(question, possibleAnswers, answer);
-        multipleChoiceQuestion.setSelectedAnswer(userAnswer);
+        multipleChoiceQuestion.setSelectedAnswer(selectedAnswer);
         multipleChoiceQuestion.setAnswer(answer);
 
         // When
@@ -125,7 +125,7 @@ public class TestMultipleChoiceQuestionClass {
     @Test
     void WhenValidatingIfAnswerIsCorrect_IsCorrectAnswerReturnsBooleanFalse_WhenSelectedAnswerAndCorrectAnswerAreNotTheSame(){
         // Given
-        String userAnswer = "answer1";
+        String selectedAnswer = "answer1";
         String question = "This is the a question";
         String answer = "answer2";
 
@@ -136,7 +136,7 @@ public class TestMultipleChoiceQuestionClass {
         possibleAnswers.add("answer4");
 
         MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(question, possibleAnswers, answer);
-        multipleChoiceQuestion.setSelectedAnswer(userAnswer);
+        multipleChoiceQuestion.setSelectedAnswer(selectedAnswer);
         multipleChoiceQuestion.setAnswer(answer);
 
         // When
